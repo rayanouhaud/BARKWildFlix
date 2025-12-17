@@ -4,11 +4,14 @@ import pandas as pd
 if 'current_page' not in st.session_state:
     st.session_state.current_page = "Home"
 
-if "user" not in st.session_state:
-    st.session_state.user = 0
+if "role" not in st.session_state:
+    st.session_state.user = "Nobody"
 
 if "authentication_status" not in st.session_state:
     st.session_state["authentication_status"] = None
+
+if "langues" not in st.session_state:
+    st.session_state["langues"] = "Francais"
 
 with st.sidebar:
     st.write("")
