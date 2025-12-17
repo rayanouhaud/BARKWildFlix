@@ -1,4 +1,3 @@
-from streamlit_authenticator import Authenticate
 import streamlit as st
 import pandas as pd
 

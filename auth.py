@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_authenticator import Authenticate
+import streamlit_authenticator as stauth
 import pandas as pd
 
 df = pd.read_csv("login.csv")
@@ -16,7 +16,7 @@ for _, row in df.iterrows():
 
 def get_authenticator(dataUser):
     if "authenticator" not in st.session_state:
-        st.session_state.authenticator = Authenticate(
+        st.session_state.authenticator = stauth.Authenticate(
             dataUser,
             "cookie_name",
             "cookie_key",

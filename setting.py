@@ -1,9 +1,9 @@
 import streamlit as st
 import pandas as pd
 
-st.header("Parametres")
+st.header("**Parametres**")
 
-st.write("Vous pouvez modifier certains réglages sur ce site.")
+st.write("**Vous pouvez modifier certains réglages sur ce site.**")
 
 if st.session_state["authentication_status"]:
     st.write("Langues")

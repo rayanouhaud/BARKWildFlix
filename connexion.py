@@ -1,4 +1,3 @@
-from streamlit_authenticator import Authenticate
 import streamlit as st
 import pandas as pd
 from auth import get_authenticator
@@ -6,9 +5,9 @@ from auth import dataUser
 
 
 if st.session_state.get("authentication_status"):
-    st.header("Deconnexion")
+    st.header("**Deconnexion**")
 else:
-    st.header("Connexion")
+    st.header("**Connexion**")
 
 authenticator = get_authenticator(dataUser)
 authenticator.login()
