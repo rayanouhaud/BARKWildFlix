@@ -1,0 +1,4 @@
+name,password,email,failed_login_attemps,logged_in,role
+rayan,test,rn@gmail.com,0,False,admin
+maelle,chippie,md@gmail.com,0,False,admin
+bruno,cheval,bn@gmail.com,0,False,user
