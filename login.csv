@@ -1,4 +1,3 @@
-name,password,email,failed_login_attemps,logged_in,role
-rayan,test,rn@gmail.com,0,False,admin
-maelle,chippie,md@gmail.com,0,False,admin
-bruno,cheval,bn@gmail.com,0,False,user
+version https://git-lfs.github.com/spec/v1
+oid sha256:53e27a0af36dc717b6c415dc54c65dc81c275e21502d51b34f493423985cb1b5
+size 177
