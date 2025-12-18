@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import bcrypt
 
 if 'current_page' not in st.session_state:
     st.session_state.current_page = "Home"
@@ -61,5 +60,6 @@ else:
 
 with st.sidebar:
     st.image("logo.png")
+
 page = st.navigation(pages)
 page.run()

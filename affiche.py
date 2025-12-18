@@ -45,12 +45,3 @@ def makeAffichage(index, level=3, contain=True):
         if level == 3:
             st.write(f"**Acteurs :** {BadValue(dataBaseFilm.iloc[index]['actor_1_name'])}, {BadValue(dataBaseFilm.iloc[index]['actor_2_name'])}, {BadValue(dataBaseFilm.iloc[index]['actor_3_name'])}")
             st.write(f"**IMDB Score :** {BadValue(dataBaseFilm.iloc[index]['imdb_score'])}")
-
-#st.write(f"**:violet[{BadValue(film['movie_title'])}]**")
-#st.write(f"**Création originale :** {BadValue(film['director_name'])}")
-#st.write(f"**Durée (en minutes) :** {BadValue(film['duration'])}")
-#st.write(f"**Acteurs :** {BadValue(film['actor_1_name'])}, {BadValue(film['actor_2_name'])}, {BadValue(film['actor_3_name'])}")
-#st.write(f"**Genres :** {BadValue(film['genres'].replace("|", ", "))}")
-#st.write(f"**Année de sortie :** {BadValue(film['title_year'])}")
-#st.write(f"**IMDB Score :** {BadValue(film['imdb_score'])}")
-#st.write(f"**Score de popularité:** {BadValue(film['popularity_score'])}")

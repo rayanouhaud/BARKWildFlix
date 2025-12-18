@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.neighbors import NearestNeighbors
 from database import getDataBaseAlgo, getDataBaseFilm
 
-def AlgoRecoFilm(filmName, n=20):
+def AlgoRecoFilm(filmName, n=5):
     dataBaseAlgo = getDataBaseAlgo()
     dataBaseFilm = getDataBaseFilm()
     dataBaseIndex = dataBaseFilm.index[dataBaseFilm["movie_title"] == filmName]
