@@ -2,10 +2,10 @@ import streamlit as st
 import streamlit_authenticator as stauth
 import pandas as pd
 
-df = pd.read_csv("login.csv")
+user = pd.read_csv("login.csv")
 
 dataUser = {"usernames": {}}
-for _, row in df.iterrows():
+for _, row in user.iterrows():
     dataUser["usernames"][row["name"]] = {
         "name": row["name"],
         "password": row["password"],

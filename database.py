@@ -1,30 +1,34 @@
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.neighbors import NearestNeighbors
 import numpy as np
 import streamlit as st
 
-dbApi = pd.read_csv("dataBaseApi.csv", sep= ",")
-dataBaseFilm = pd.read_csv("dataBaseFilm.csv")
-dataBaseAlgo = pd.read_csv("dataBaseAlgo.csv")
+def getDbApi():
+    return pd.read_csv("dataBaseApi.csv", sep= ",")
+
+def getDataBaseFilm():
+    return pd.read_csv("dataBaseFilm.csv")
+
+def getDataBaseAlgo():
+    return pd.read_csv("dataBaseAlgo.csv")
 
 def getDataBase(url):
     dbFilm = pd.read_csv(url ,sep= ",")
     return dbFilm
 
 def dbCheckContent(dbFilm, dbClean, mapping):
-  for col in dbFilm.columns: # traverse colonne de dbFilm
-    for index, value in dbFilm[col].items(): # traverse ligne de dbFilm
-      if col == 'color': # si la colonne est 'color' alors met tout avec la valeur 'Color'
+  for col in dbFilm.columns:
+    for index, value in dbFilm[col].items():
+      if col == 'color':
         value = 'Color'
-      if mapping.get(col) is not None and (value == 'N/A' or pd.isna(value)): # si la colonne existe dans L'API et la valeur de la ligne est NULL ou egale a N/A alors remplace avec valeur de l'API
+      if mapping.get(col) is not None and (value == 'N/A' or pd.isna(value)):
         value = dbClean[mapping.get(col)][index]
         if 'United States' in value:
           value = value.replace("United States", "USA")
         if 'United Kingdom' in value:
           value = value.replace("United Kingdom", "UK")
         if col == 'duration' and value != 'N/A':
-          value = float(value.split()[0])                     # separe la chaine de caractere entre
+          value = float(value.split()[0])
         if col == 'language':
           value = "English"
         if col == 'country' and dbFilm['language'][index] == 'English':
@@ -35,10 +39,10 @@ def dbCheckContent(dbFilm, dbClean, mapping):
 def dbNettoyage(dbFilm):
   for col in dbFilm.columns:
     if dbFilm[col].dtype in [int, float, "float64", "int64"]:
-        dbFilm[col] = dbFilm[col].fillna(0)  # NaN → 0
+        dbFilm[col] = dbFilm[col].fillna(0)
     elif dbFilm[col].dtype == object:
-        dbFilm[col] = dbFilm[col].replace("", np.nan)  # considérer "" comme NaN
-        dbFilm[col] = dbFilm[col].fillna("Inconnu") 
+        dbFilm[col] = dbFilm[col].replace("", np.nan)
+        dbFilm[col] = dbFilm[col].fillna("Inconnu")
   return dbFilm
 
 def dbNettoyageAlgo(dbFilm):
@@ -75,9 +79,10 @@ def dbNettoyageAlgo(dbFilm):
 def MaJDataBase():
     mapping = {'movie_title' : 'Title', 'director_name' : 'Director', 'duration' : 'Runtime', 'genres' : 'Genre', 'language' : 'Language', 'title_year' : 'Year', 'imdb_score' : 'imdb Votes', 'country' : 'Country', 'plot_keywords' : 'Plot', 'actor_1_name' : 'Actors', 'actor_2_name' : 'Actors', 'actor_3_name' : 'Actors'}
     dbFilm = getDataBase("https://drive.google.com/uc?id=1QNf0y3EZ7AZZBocYtfbEJlVSmHxruS5k")
-    dbFilm = dbCheckContent(dbFilm, dbApi, mapping)
+    dbFilm = dbCheckContent(dbFilm, getDbApi(), mapping)
     dbFilm = dbNettoyage(dbFilm)
     dbFilmAlgo = dbNettoyageAlgo(dbFilm)
+    dbFilm["movie_title"] = dbFilm["movie_title"].astype(str).str.strip()
     dbFilm.to_csv("dataBaseFilm.csv", index=False)
     dbFilmAlgo.to_csv("dataBaseAlgo.csv", index=False)
     st.success("La DataBase a bien été mis à jour")

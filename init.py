@@ -13,6 +13,9 @@ if "authentication_status" not in st.session_state:
 if "langues" not in st.session_state:
     st.session_state["langues"] = "Francais"
 
+if "neighbors" not in st.session_state:
+    st.session_state["neighbors"] = 5
+
 with st.sidebar:
     st.write("")
 
