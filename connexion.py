@@ -13,7 +13,6 @@ else:
 st.write("---")
 
 tabs = st.tabs(["Connexion", "Créer un compte"])
-print(f"2{st.session_state["authentication_status"]}") 
 
 with tabs[0]:
     authenticator = get_authenticator()
