@@ -1,6 +1,6 @@
 import streamlit as st
 from auth import load_users, get_authenticator
-from database import getDataBase, dbCheckContent, dbNettoyage, getDbApi, dbNettoyageAlgo
+from database import getDataBaseFilm, getDataBase, dbCheckContent, dbNettoyage, getDbApi, dbNettoyageAlgo
 
 def SetLangue():
     st.write("Dans quel langue voulez-vous mettre le site !")
@@ -39,6 +39,7 @@ def addUser(tempUserName, tempPassword, tempMail, tempRole):
     user.to_csv("login.csv", index=False)
 
 def settingForAdmin():
+    dataBaseFilm = getDataBaseFilm()
     user = load_users()
     st.write(":violet[**Voici les paramètres en tant qu'administrateur**]")
     tabs = st.tabs(["Utilisateur", "Base de donnes", "Statistique"])
