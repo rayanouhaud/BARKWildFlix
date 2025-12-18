@@ -75,14 +75,3 @@ def dbNettoyageAlgo(dbFilm):
     scaler = MinMaxScaler()
     dbScaled = pd.DataFrame(scaler.fit_transform(dbFilmAlgo), columns=dbFilmAlgo.columns)
     return dbScaled
-
-def MaJDataBase():
-    mapping = {'movie_title' : 'Title', 'director_name' : 'Director', 'duration' : 'Runtime', 'genres' : 'Genre', 'language' : 'Language', 'title_year' : 'Year', 'imdb_score' : 'imdb Votes', 'country' : 'Country', 'plot_keywords' : 'Plot', 'actor_1_name' : 'Actors', 'actor_2_name' : 'Actors', 'actor_3_name' : 'Actors'}
-    dbFilm = getDataBase("https://drive.google.com/uc?id=1QNf0y3EZ7AZZBocYtfbEJlVSmHxruS5k")
-    dbFilm = dbCheckContent(dbFilm, getDbApi(), mapping)
-    dbFilm = dbNettoyage(dbFilm)
-    dbFilmAlgo = dbNettoyageAlgo(dbFilm)
-    dbFilm["movie_title"] = dbFilm["movie_title"].astype(str).str.strip()
-    dbFilm.to_csv("dataBaseFilm.csv", index=False)
-    dbFilmAlgo.to_csv("dataBaseAlgo.csv", index=False)
-    st.success("La DataBase a bien été mis à jour")

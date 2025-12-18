@@ -5,7 +5,7 @@ if 'current_page' not in st.session_state:
     st.session_state.current_page = "Home"
 
 if "role" not in st.session_state:
-    st.session_state.user = "Nobody"
+    st.session_state["role"] = "Nobody"
 
 if "authentication_status" not in st.session_state:
     st.session_state["authentication_status"] = None
