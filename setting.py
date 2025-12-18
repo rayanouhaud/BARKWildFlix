@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from auth import get_authenticator
-from adminsetting import settingForAdmin, SetLangue, deleteUser
+from adminsetting import settingForAdmin, SetLangue
 from database import getDataBaseFilm
 
 st.header(":violet[**Parametres**]")
