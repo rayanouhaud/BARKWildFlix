@@ -44,6 +44,24 @@ def settingForAdmin():
     tabs = st.tabs(["Utilisateur", "Base de donnes", "Statistique"])
     with tabs[0]:
         SetLangue()
+        st.session_state["neighbors"] = int(st.select_slider(
+            "Le nombre de film à recommander",
+            options=[
+                "2",
+                "3",
+                "4",
+                "5",
+                "5",
+                "6",
+                "7",
+            ]
+            )) + 1
+        all_genres = dataBaseFilm["genres"].str.split("|").explode().str.strip().unique().tolist()
+        chooseGenre = st.multiselect(
+            "Quel(s) genre(s) de film voulez vous voir ?",
+            all_genres
+        )
+        st.session_state["genre"] = chooseGenre
     with tabs[1]:
         st.write("**Mettre à jour la DataBase :**")
         if st.button("MaJ", type="primary"):
@@ -73,3 +91,5 @@ def settingForAdmin():
                     st.error("Il manque des données pour créer ce compte.")
         st.write("**Tous les utilisateurs :**")
         st.dataframe(user)
+    with tabs[2]:
+        st.error("Ces fonctionnalités sont en cours de réalisation !")
